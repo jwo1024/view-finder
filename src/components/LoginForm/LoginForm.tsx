@@ -55,11 +55,11 @@ const Layout = styled.div`
   color: #fff;
 
   margin: 10%;
-  padding: 4rem 2rem;
-  width: 60%;
+  padding: 3rem 2rem;
+  width: 30%;
   height: 60%;
   min-width: 400px;
-  min-height: 500px;
+  min-height: 400px;
 
   border-radius: 10px;
 `;

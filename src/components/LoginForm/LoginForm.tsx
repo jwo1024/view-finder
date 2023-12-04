@@ -9,12 +9,25 @@ export default function LoginForm() {
       <br></br>
       <ButtonLayout>
         <Button> Sign up with Google </Button>
-        ------------------------ or ------------------------
+        <Seperator><HrWrapper/>or<HrWrapper/></Seperator>
         <Button> Login </Button>
       </ButtonLayout>
     </Layout>
   );
 }
+
+const Seperator = styled.span`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+`
+const HrWrapper = styled.hr`
+  width: 100%;
+  margin: 0.5rem;
+  border: none;
+  border-top: 0.5px solid #fff;
+  display: inline-block;
+`
 
 const TextLabel = styled.section`
   font-size: 3rem;

@@ -1,15 +1,25 @@
-import styled from 'styled-components'
+import styled from "styled-components";
+import { auth } from "../firebase/firebase";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
+
+  const logOut = () => {
+    auth.signOut();
+    router.push("/login");
+  };
+
   return (
     <>
       <Layout>
         <BluredBackground />
         <Header>Header</Header>
-        <Main>
-          {/* <Component {...pageProps} /> */}
-        </Main>
-        <Aside>Aside</Aside>
+        <Main>{/* <Component {...pageProps} /> */}</Main>
+        <Aside>
+          Aside
+          <button onClick={logOut}>log out</button>
+        </Aside>
       </Layout>
     </>
   );
@@ -47,7 +57,7 @@ const Main = styled.main`
   background-size: 100%;
   opacity: 0.8;
   color: #fff;
-  padding : 1rem;
+  padding: 1rem;
   padding-left: 10%;
   height: 100%;
   overflow: scroll;

@@ -1,47 +1,65 @@
 import styled from "styled-components";
-import LoginForm from "../components/LoginForm/LoginForm";
+import GithubButton from "@/components/login/GithubButton";
+import GoogleButton from "@/components/login/GoogleButton";
+
+import {
+  BluredBackground,
+  SeperatorBox,
+} from "@/components/login/common-components";
 
 export default function Login() {
   return (
-    <LoginLayout>
+    <Layout>
       <BluredBackground />
-      {/* <LoginContainer> */}
-        <LoginForm />
-      {/* </LoginContainer> */}
-    </LoginLayout>
+      <Container>
+        <TextLabel>Wellcome</TextLabel>
+        <TextLabel>to</TextLabel>
+        <TextLabel>View Finder</TextLabel>
+        <br />
+        <SeperatorBox />
+        <br />
+        <ButtonBox>
+          <GithubButton />
+          <GoogleButton />
+        </ButtonBox>
+      </Container>
+    </Layout>
   );
 }
 
-const LoginLayout = styled.div`
+const Layout = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-const LoginContainer = styled.main`
+const TextLabel = styled.section`
+  font-size: 3rem;
+  font-weight: 300;
+  margin: 0.5rem;
+  text-align: left;
+  line-height: 0.8;
+`;
+
+const ButtonBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+`;
+
+const Container = styled.div`
   background-color: #000;
   opacity: 0.7;
   color: #fff;
 
   margin: 10%;
-  width: 60%;
+  padding: 3rem 2rem;
+  width: 30%;
   height: 60%;
-  min-width: 500px;
+  min-width: 400px;
   min-height: 400px;
 
   border-radius: 10px;
-  padding: 1rem;
-`;
-
-const BluredBackground = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* background-color: black; */
-  background-image: url("bg-img.jpg");
-  background-size: cover;
-  filter: blur(10px); /* blur 효과 적용 */
-  z-index: -1; /* 뒤에 위치하도록 설정 */
 `;

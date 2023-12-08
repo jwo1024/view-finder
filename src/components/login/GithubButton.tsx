@@ -2,7 +2,7 @@ import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
 import styled from "styled-components";
 import { auth } from "../../firebase/firebase";
 import { useRouter } from "next/router";
-import { Button, Logo } from "./common-components";
+import { Button, Logo } from "../common/common-components";
 
 export default function GithubButton() {
   const router = useRouter();

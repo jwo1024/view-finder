@@ -1,73 +1,65 @@
 import styled from "styled-components";
-import { auth } from "../firebase/firebase";
 import { useRouter } from "next/router";
+import { BluredBackground } from "@/components/common/common-components";
+import TimeLine from "@/components/main/TimeLine";
+import { AsideContainer } from "@/components/main/AsideContainer";
 
 export default function Home() {
   const router = useRouter();
-
-  const logOut = () => {
-    auth.signOut();
-    router.push("/login");
-  };
 
   return (
     <>
       <Layout>
         <BluredBackground />
-        <Header>Header</Header>
-        <Main>{/* <Component {...pageProps} /> */}</Main>
+        <Header>
+          <Logo>ViewFinder</Logo>
+        </Header>
+        <Main>
+          <TimeLine />
+        </Main>
         <Aside>
-          Aside
-          <button onClick={logOut}>log out</button>
+          <AsideContainer />
         </Aside>
       </Layout>
     </>
   );
 }
 
-const BluredBackground = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* background-color: black; */
-  background-image: url("bg-img.jpg");
-  background-size: cover;
-  filter: blur(10px); /* blur 효과 적용 */
-  z-index: -1; /* 뒤에 위치하도록 설정 */
-`;
-
 const Layout = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 3fr 2fr;
+  display: flex;
   gap: 1rem;
   height: 100vh;
 `;
 
 const Header = styled.header`
+  flex: 0 1 auto;
   color: #fff;
-  background-color: #333;
-  opacity: 0.1;
-  padding: 2rem;
+  padding: 1rem;
+`;
+
+const Logo = styled.div`
+  padding: 10px;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 90%;
 `;
 
 const Main = styled.main`
-  background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8' standalone='no'%3F%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3C!-- Created with Vectornator (http://vectornator.io/) --%3E%3Csvg height='100%25' stroke-miterlimit='10' style='fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;' version='1.1' viewBox='639.083 1 741.725 1080' width='100%25' xml:space='preserve' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cdefs/%3E%3Cg id='레이어-1'%3E%3Cpath d='M639.083 1081L1380.81 1081L1380.81 1L639.083 1L639.083 1081Z%0AM658.083 18.2429L696.84 18.2429L696.84 31.7516L658.083 31.7516L658.083 18.2429Z%0AM658.268 38.2426L697.025 38.2426L697.025 51.7513L658.268 51.7513L658.268 38.2426Z%0AM658.083 61.3905L696.84 61.3905L696.84 74.8991L658.083 74.8991L658.083 61.3905Z%0AM658.083 84.5383L696.84 84.5383L696.84 98.047L658.083 98.047L658.083 84.5383Z%0AM658.268 108.361L697.025 108.361L697.025 121.87L658.268 121.87L658.268 108.361Z%0AM658.083 132.184L696.84 132.184L696.84 145.693L658.083 145.693L658.083 132.184Z%0AM658.268 155.113L697.025 155.113L697.025 168.622L658.268 168.622L658.268 155.113Z%0AM658.268 178.633L697.025 178.633L697.025 192.142L658.268 192.142L658.268 178.633Z%0AM658.268 204.068L697.025 204.068L697.025 217.577L658.268 217.577L658.268 204.068Z%0AM658.268 228.136L697.025 228.136L697.025 241.644L658.268 241.644L658.268 228.136Z%0AM658.268 252.203L697.025 252.203L697.025 265.712L658.268 265.712L658.268 252.203Z%0AM658.083 277.794L696.84 277.794L696.84 291.303L658.083 291.303L658.083 277.794Z%0AM658.083 301.752L696.84 301.752L696.84 315.261L658.083 315.261L658.083 301.752Z%0AM658.268 327.344L697.025 327.344L697.025 340.852L658.268 340.852L658.268 327.344Z%0AM658.268 352.391L697.025 352.391L697.025 365.899L658.268 365.899L658.268 352.391Z%0AM658.268 375.985L697.025 375.985L697.025 389.493L658.268 389.493L658.268 375.985Z%0AM658.268 400.773L697.025 400.773L697.025 414.282L658.268 414.282L658.268 400.773Z%0AM658.083 425.861L696.84 425.861L696.84 439.37L658.083 439.37L658.083 425.861Z%0AM658.268 450.948L697.025 450.948L697.025 464.457L658.268 464.457L658.268 450.948Z%0AM658.083 477.23L696.84 477.23L696.84 490.739L658.083 490.739L658.083 477.23Z%0AM658.083 503.513L696.84 503.513L696.84 517.021L658.083 517.021L658.083 503.513Z%0AM658.268 528.917L697.025 528.917L697.025 542.426L658.268 542.426L658.268 528.917Z%0AM658.083 555.594L696.84 555.594L696.84 569.102L658.083 569.102L658.083 555.594Z%0AM658.268 582.055L697.025 582.055L697.025 595.564L658.268 595.564L658.268 582.055Z%0AM658.083 606.458L696.84 606.458L696.84 619.967L658.083 619.967L658.083 606.458Z%0AM658.083 632.92L696.84 632.92L696.84 646.428L658.083 646.428L658.083 632.92Z%0AM658.083 659.381L696.84 659.381L696.84 672.89L658.083 672.89L658.083 659.381Z%0AM658.083 684.96L696.84 684.96L696.84 698.469L658.083 698.469L658.083 684.96Z%0AM658.268 712.569L697.025 712.569L697.025 726.078L658.268 726.078L658.268 712.569Z%0AM658.268 739.003L697.025 739.003L697.025 752.512L658.268 752.512L658.268 739.003Z%0AM658.268 766.319L697.025 766.319L697.025 779.827L658.268 779.827L658.268 766.319Z%0AM658.083 793.046L696.84 793.046L696.84 806.555L658.083 806.555L658.083 793.046Z%0AM658.268 819.481L697.025 819.481L697.025 832.989L658.268 832.989L658.268 819.481Z%0AM658.083 845.867L696.84 845.867L696.84 859.375L658.083 859.375L658.083 845.867Z%0AM658.268 870.017L697.025 870.017L697.025 883.526L658.268 883.526L658.268 870.017Z%0AM658.268 894.614L697.025 894.614L697.025 908.123L658.268 908.123L658.268 894.614Z%0AM658.083 920.553L696.84 920.553L696.84 934.062L658.083 934.062L658.083 920.553Z%0AM658.083 946.045L696.84 946.045L696.84 959.554L658.083 959.554L658.083 946.045Z%0AM658.083 972.431L696.84 972.431L696.84 985.94L658.083 985.94L658.083 972.431Z%0AM658.083 1000.16L696.84 1000.16L696.84 1013.67L658.083 1013.67L658.083 1000.16Z%0AM658.268 1025.2L697.025 1025.2L697.025 1038.71L658.268 1038.71L658.268 1025.2Z%0AM658.268 1050.25L697.025 1050.25L697.025 1063.76L658.268 1063.76L658.268 1050.25Z%0A' fill='%23000000' fill-rule='nonzero' opacity='1' stroke='%23000000' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E%0A"); /* background-color: #333; */
+  flex: 1 0 auto;
+  background-image: url(bg-film.svg);
   background-size: 100%;
-  opacity: 0.8;
   color: #fff;
   padding: 1rem;
-  padding-left: 10%;
-  height: 100%;
-  overflow: scroll;
+  padding-left: 8%;
+  height: 100vh;
+  width: 600px;
+  min-width: 480px;
+  overflow: auto;
 `;
 
 const Aside = styled.aside`
+  flex: 0.5 1 0%;
   color: #fff;
-  background-color: #333;
-  opacity: 0.1;
-
   padding: 2rem;
   text-align: right;
 `;

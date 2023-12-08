@@ -5,7 +5,7 @@ import GoogleButton from "@/components/login/GoogleButton";
 import {
   BluredBackground,
   SeperatorBox,
-} from "@/components/login/common-components";
+} from "@/components/common/common-components";
 
 export default function Login() {
   return (

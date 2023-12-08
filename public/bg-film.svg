@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Created with Vectornator (http://vectornator.io/) -->
-<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="639.083 1 741.725 1080" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg  opacity="0.7" height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="639.083 1 741.725 1080" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs/>
 <g id="레이어-1">
 <path d="M639.083 1081L1380.81 1081L1380.81 1L639.083 1L639.083 1081Z
@@ -48,6 +48,5 @@ M658.083 1000.16L696.84 1000.16L696.84 1013.67L658.083 1013.67L658.083 1000.16Z
 M658.268 1025.2L697.025 1025.2L697.025 1038.71L658.268 1038.71L658.268 1025.2Z
 M658.268 1050.25L697.025 1050.25L697.025 1063.76L658.268 1063.76L658.268 1050.25Z
 " fill="#000000" fill-rule="nonzero" opacity="1" stroke="#000000" stroke-width="1"/>
-" fill="#000000" fill-rule="nonzero" opacity="1" stroke="#007aff" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0" stroke-width="10"/>
 </g>
 </svg>

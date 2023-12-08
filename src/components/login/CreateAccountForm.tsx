@@ -3,7 +3,6 @@ import { auth } from "../../firebase/firebase";
 import { useState } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import loginPersistence from "../../firebase/login";
 import { FirebaseError } from "firebase/app";
 
 export default function CreateAccountForm() {
@@ -44,7 +43,6 @@ export default function CreateAccountForm() {
       await updateProfile(credentials.user, { displayName: name }).then(() => {
         // loginPersistence(email, password);
       });
-      await loginPersistence(email, password);
       // navigate("/");
       router.push("/");
     } catch (error) {

@@ -1,13 +1,18 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
 
-const BluredBackground = styled.div`
+interface BluredBackgroundProps {
+  backgroundImage?: string;
+}
+
+const BluredBackground = styled.div<BluredBackgroundProps>`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("bg-img.jpg");
+  background-image: ${(props) =>
+    props.backgroundImage ? `url(${props.backgroundImage})` : 'url("bg-img.jpg")'};
   background-size: cover;
   filter: blur(10px); /* blur 효과 적용 */
   z-index: -1; /* 뒤에 위치하도록 설정 */

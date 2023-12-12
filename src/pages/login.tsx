@@ -1,6 +1,14 @@
 import styled from "styled-components";
-import GithubButton from "@/components/login/GithubButton";
-import GoogleButton from "@/components/login/GoogleButton";
+import { useState } from "react";
+import { Button, Logo } from "@/components/common/common-components";
+import { useRouter } from "next/router";
+import { auth } from "@/firebase/firebase";
+import {
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { FirebaseError } from "firebase/app";
 
 import {
   BluredBackground,
@@ -8,6 +16,8 @@ import {
 } from "@/components/common/common-components";
 
 export default function Login() {
+  const [error, setError] = useState("");
+
   return (
     <Layout>
       <BluredBackground />
@@ -19,9 +29,10 @@ export default function Login() {
         <SeperatorBox />
         <br />
         <ButtonBox>
-          <GithubButton />
-          <GoogleButton />
+          <GithubButton setError={setError} />
+          <GoogleButton setError={setError} />
         </ButtonBox>
+        {error && <p>{error}</p>}
       </Container>
     </Layout>
   );
@@ -63,3 +74,46 @@ const Container = styled.div`
 
   border-radius: 10px;
 `;
+
+interface ILoginButton {
+  setError: (error: string) => void;
+}
+
+function GithubButton({ setError }: ILoginButton) {
+  const router = useRouter();
+
+  const onClick = async () => {
+    try {
+      const provider = new GithubAuthProvider();
+      await signInWithPopup(auth, provider);
+      router.push("/");
+    } catch (error) {
+      if (error instanceof FirebaseError) setError(error.message);
+      else setError("An error occurred");
+    }
+  };
+
+  return (
+    <Button onClick={onClick}>
+      <Logo src="/github-mark.svg" alt="github" />
+      Sign up with Github
+    </Button>
+  );
+}
+
+function GoogleButton({ setError }: ILoginButton) {
+  const router = useRouter();
+
+  const onClick = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+      router.push("/");
+    } catch (error) {
+      if (error instanceof FirebaseError) setError(error.message);
+      else setError("An error occurred");
+    }
+  };
+
+  return <Button onClick={onClick}>Sign up with Google</Button>;
+}

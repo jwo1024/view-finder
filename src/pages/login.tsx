@@ -12,7 +12,7 @@ import { FirebaseError } from "firebase/app";
 
 import {
   BluredBackground,
-  SeperatorBox,
+  Seperator,
 } from "@/components/common/common-components";
 
 export default function Login() {
@@ -26,7 +26,7 @@ export default function Login() {
         <TextLabel>to</TextLabel>
         <TextLabel>View Finder</TextLabel>
         <br />
-        <SeperatorBox />
+        <Seperator />
         <br />
         <ButtonBox>
           <GithubButton setError={setError} />

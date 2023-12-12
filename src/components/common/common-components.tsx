@@ -44,7 +44,7 @@ const Button = styled.button`
   }
 `;
 
-const Seperator = styled.span`
+const SpanWrapper = styled.span`
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -56,16 +56,16 @@ const HrWrapper = styled.hr`
   display: inline;
 `;
 
-const SeperatorBox = ({ ...props }) => {
+const Seperator = ({ ...props }) => {
   return (
-    <Seperator>
+    <SpanWrapper>
       <HrWrapper />
       {props.children ? (
         <span style={{ margin: "0 0.5rem" }}>{props.children}</span>
       ) : null}
       <HrWrapper />
-    </Seperator>
+    </SpanWrapper>
   );
 };
 
-export { BluredBackground, Button, Logo, SeperatorBox };
+export { BluredBackground, Button, Logo, Seperator };

@@ -28,6 +28,10 @@ export default function App({ Component, pageProps }: AppProps) {
     init();
   }, []);
 
+  const goHome = () => {
+    Router.push("/");
+  };
+
   return (
     <>
       {isLoading ? (
@@ -36,7 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Layout>
           <BluredBackground />
           <Header>
-            <Logo>ViewFinder</Logo>
+            <Logo onClick={goHome}>ViewFinder</Logo>
           </Header>
           <Main>
             <Component {...pageProps} />
@@ -64,11 +68,17 @@ const Header = styled.header`
   padding: 1rem;
 `;
 
-const Logo = styled.div`
+const Logo = styled.button`
   padding: 10px;
+  margin: 0px;
+  /* width: 120px; */
+  font-size: medium;
+  font-weight: 1000;
   background-color: #ffffff;
   color: #000000;
   border-radius: 90%;
+  border: 0px;
+  cursor: pointer;
 `;
 
 const Main = styled.main`

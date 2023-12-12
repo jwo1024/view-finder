@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import TextSection from "./TextSection";
 import ImgSection from "./ImgSection";
-import { ArticleProps } from "./TimeLine";
+import { ArticleProps } from "@/pages";
 import { auth, db, storage } from "@/firebase/firebase";
 import { deleteDoc, doc } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
@@ -38,7 +38,6 @@ export default function Article({
   const onEdit = () => {
     if (user?.uid === userId) {
       //
-
     }
   };
 

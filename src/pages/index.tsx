@@ -1,65 +1,97 @@
 import styled from "styled-components";
-import { useRouter } from "next/router";
-import { BluredBackground } from "@/components/common/common-components";
-import TimeLine from "@/components/main/TimeLine";
-import { AsideContainer } from "@/components/main/AsideContainer";
+import Article from "@/components/main/Article";
+import { useEffect, useState } from "react";
+import { db } from "@/firebase/firebase";
+import {
+  collection,
+  query,
+  orderBy,
+  limit,
+  onSnapshot,
+} from "firebase/firestore";
+import { Unsubscribe } from "@firebase/util";
 
 export default function Home() {
-  const router = useRouter();
+  return <TimeLine />;
+}
+
+export interface ArticleProps {
+  id: string;
+  photo?: string;
+  text: string;
+  userId: string;
+  username: string;
+  createdAt: number;
+}
+
+function TimeLine() {
+  const [articles, setArticles] = useState<ArticleProps[]>([]);
+
+  const fetchArticle = async () => {
+    const articleQuery = query(
+      collection(db, "posts"),
+      orderBy("createdAt", "desc"),
+      limit(25)
+    );
+    let unsubcribe = await onSnapshot(articleQuery, (snapshot) => {
+      const posts = snapshot.docs.map((doc) => {
+        const { createdAt, photo, text, userId, username } = doc.data();
+        return {
+          id: doc.id,
+          createdAt,
+          photo,
+          text,
+          userId,
+          username,
+        };
+      });
+      setArticles(posts);
+    });
+    return unsubcribe;
+  };
+
+  useEffect(() => {
+    let unsubcribe: Unsubscribe | null = null;
+    fetchArticle()
+      .then((res) => {
+        unsubcribe = res;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    return () => {
+      unsubcribe && unsubcribe();
+    };
+  }, []);
 
   return (
-    <>
-      <Layout>
-        <BluredBackground />
-        <Header>
-          <Logo>ViewFinder</Logo>
-        </Header>
-        <Main>
-          <TimeLine />
-        </Main>
-        <Aside>
-          <AsideContainer />
-        </Aside>
-      </Layout>
-    </>
+    <Layout>
+      {articles.map((post) => (
+        <Article
+          key={post.id}
+          username={post.username}
+          photo={post.photo}
+          text={post.text}
+          createdAt={post.createdAt}
+          id={post.id}
+          userId={post.userId}
+        />
+      ))}
+    </Layout>
   );
 }
 
 const Layout = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   height: 100vh;
-`;
-
-const Header = styled.header`
-  flex: 0 1 auto;
-  color: #fff;
-  padding: 1rem;
-`;
-
-const Logo = styled.div`
-  padding: 10px;
-  background-color: #ffffff;
-  color: #000000;
-  border-radius: 90%;
-`;
-
-const Main = styled.main`
-  flex: 1 0 auto;
-  background-image: url(bg-film.svg);
-  background-size: 100%;
-  color: #fff;
-  padding: 1rem;
-  padding-left: 8%;
-  height: 100vh;
-  width: 600px;
-  min-width: 480px;
-  overflow: auto;
-`;
-
-const Aside = styled.aside`
-  flex: 0.5 1 0%;
-  color: #fff;
-  padding: 2rem;
-  text-align: right;
+  width: 100%;
+  overflow-y: scroll;
+  // 스크롤바 안보이게
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
 `;

@@ -1,11 +1,11 @@
 import { styled } from "styled-components";
 import { auth } from "../../firebase/firebase";
 import { useRouter } from "next/router";
-import PostForm from "./PostForm";
+import PostForm from "../main/PostForm";
 import { useState } from "react";
 import { set } from "firebase/database";
 
-export const AsideContainer = () => {
+export const AsideMenu = () => {
   const router = useRouter();
   const [postForm, setPostForm] = useState(false);
 
@@ -15,6 +15,10 @@ export const AsideContainer = () => {
       router.push("/login");
     }
   };
+
+  const goMenu = () => {
+    router.push("/profile");
+  }
 
   const postArticle = () => {
     setPostForm((prev) => !prev);
@@ -36,7 +40,7 @@ export const AsideContainer = () => {
           />
         </svg>
       </Button>
-      <Button>
+      <Button onClick={goMenu}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
